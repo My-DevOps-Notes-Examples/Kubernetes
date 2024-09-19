@@ -1,0 +1,23 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sample-cronjob
+spec:
+  schedule: '* * * * *'
+  jobTemplate:
+    metadata:
+      name: cronjob-alpine
+    spec:
+      backoffLimit: 5
+      template:
+        metadata:
+          name: cronjob-alpine
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: alpine
+              image: alpine:latest
+              args:
+                - sleep
+                - 5s
