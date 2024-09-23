@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: setbased-rs
+spec:
+  minReadySeconds: 2
+  replicas: 4
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - nginx
+          - web
+      - key: env
+        operator: NotIn
+        values:
+          - prod
+          - test
+      - key: failing
+        operator: DoesNotExist
+        values:
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx
+        env: dev
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
