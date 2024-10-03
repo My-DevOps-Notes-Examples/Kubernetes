@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeselector-nodename
+  labels:
+    app: jenkins
+spec:
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins
+      ports:
+        - containerPort: 8080
+  nodeName: "aks-nodepool1-42408219-vmss000001"
