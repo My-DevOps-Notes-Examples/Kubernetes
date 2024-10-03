@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  minReadySeconds: 1
+  minReadySeconds: 5
   replicas: 4
   selector:
     matchLabels:
@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:1.27
+          image: httpd:2.4
           ports:
             - containerPort: 80
           livenessProbe:
