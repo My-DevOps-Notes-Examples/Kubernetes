@@ -5,6 +5,8 @@ metadata:
   name: nginx-deploy
   labels:
     app: nginx
+  annotations:
+    kubernetes.io/change-cause: "update to myphpadmin"
 spec:
   minReadySeconds: 5
   replicas: 4
@@ -25,7 +27,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: phpmyadmin:5
+          image: phpmyadmin
           ports:
             - containerPort: 80
           livenessProbe:
