@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkins-pod
+  labels:
+    app: jenkins
+spec:
+  affinity:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                app: nginx
+            topologyKey: kubernetes.io/hostname
+          weight: 100
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins
+      ports:
+        - containerPort: 8080
