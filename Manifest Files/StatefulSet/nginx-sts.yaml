@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  minReadySeconds: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: nginx-svc
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+        version: '1.27'
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: htmlhome
+              mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+    - metadata:
+        name: htmlhome
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            memory: 1Gi
+        storageClassName: managed
