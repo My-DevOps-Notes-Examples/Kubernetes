@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-cm
+data:
+  MYSQL_ROOT_PASSWORD: RootRoot
+  MYSQL_USER: DevOpsAdmin
+  MYSQL_PASSWORD: Suresh@3697
+  MYSQL_DATABASE: DevOpsData
