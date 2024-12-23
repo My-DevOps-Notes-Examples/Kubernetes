@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mysql
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8
+          envFrom:
+            - configMapRef:
+                name: mysql-cm
+                optional: false
+          ports:
+            - containerPort: 3306
