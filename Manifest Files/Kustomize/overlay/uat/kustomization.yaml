@@ -1,0 +1,6 @@
+---
+bases:
+  - ../../base
+
+namespace: uat
+nameSuffix: -uat
