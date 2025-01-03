@@ -4,3 +4,7 @@ bases:
 
 namespace: uat
 nameSuffix: -uat
+labels:
+  - pairs:
+      app: my-dashboard
+      env: uat

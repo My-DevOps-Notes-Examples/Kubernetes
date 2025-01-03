@@ -4,3 +4,7 @@ bases:
 
 namespace: qa
 nameSuffix: -qa
+labels:
+  - pairs:
+      app: my-dashboard
+      env: qa

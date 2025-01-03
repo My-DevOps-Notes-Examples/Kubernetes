@@ -4,3 +4,7 @@ bases:
 
 namespace: dev
 nameSuffix: -dev
+labels:
+  - pairs:
+      app: my-dashboard
+      env: dev
