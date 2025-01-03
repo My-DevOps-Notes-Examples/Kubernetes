@@ -1,0 +1,144 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-main-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: main-ecom
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: main-pod
+      labels:
+        app: main-ecom
+    spec:
+      containers:
+        - name: main
+          image: nagasuribabukola/ecom-main:1.0.0
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-identity-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: identity-ecom
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: identity-pod
+      labels:
+        app: identity-ecom
+    spec:
+      containers:
+        - name: identity
+          image: nagasuribabukola/ecom-identity:1.0.0
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-catalog-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: catalog-ecom
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: catalog-pod
+      labels:
+        app: catalog-ecom
+    spec:
+      containers:
+        - name: catalog
+          image: nagasuribabukola/ecom-catalog:1.0.0
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-order-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: order-ecom
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: order-pod
+      labels:
+        app: order-ecom
+    spec:
+      containers:
+        - name: order
+          image: nagasuribabukola/ecom-order:1.0.0
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-service-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: service-ecom
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: service-pod
+      labels:
+        app: service-ecom
+    spec:
+      containers:
+        - name: service
+          image: nagasuribabukola/ecom-service:1.0.0
+          ports:
+            - containerPort: 80
